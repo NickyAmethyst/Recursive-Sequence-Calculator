@@ -2,21 +2,20 @@
 # x1 value is a rational number and the inductive step is composed of arithmatic opperations
 
 from fractions import Fraction
-#x1 = input("enter a rational number, i.e. 5 or 5/7: ")
-#x1 = Fraction("3/5")
 #x1 = Fraction(input("enter a rational number, e.g. 5 or 5/7: "))
 x1 = Fraction("4")
 
-# now how to define the inductive step?
+#numberOfTerms = int(input("Enter number of terms to be calculated: "))
+numberOfTerms = 5
+
+# The numerator and denominator variables are later used to define the inductive step
 # Prompt user to enter a list of integers for the numerator and denominator
 #numerator = [1,1,2,0] # 1x^1 + 2x^0
-numerator = input("Enter the coefficients and exponents of the numorator polynomial \n as a comma separated list with an even number of terms e.g. 1,1,2,0: ").split(',')
-#numerator = [1,1,2,0]
-print(numerator)
-#denominator = input("Enter the coefficients and exponents of the denominator polynomial as a comma separated list with an even number of terms e.g. 1,1,2,0:").split(',')
+#numerator = input("Enter the coefficients and exponents of the numorator polynomial \n as a comma separated list with an \n even number of terms e.g. 3,2,2,0 which represents 3x^2 + 2x^0: ").split(',')
+numerator = [1,1,2,0]
+#denominator = input("Enter the coefficients and exponents of the denominator polynomial \n as a comma separated list with an even number of terms e.g. 1,1,2,0:").split(',')
 denominator = [5,1]   # 5
-#numberOfTerms = int(input("Enter number of terms to be calculated: "))
-numberOfTerms = 100
+
 # funcion takes in a list and returns a polynomial
 # lists must have even numbers of terms
 def poly_gen(coefs, y):
@@ -54,7 +53,7 @@ ans = compute_head(numberOfTerms, x1, inductive_step)
 width = len(str(numberOfTerms))
 count = 1
 for t in ans:
-    output = f"{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
+    output = f"x_{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
     print(output)
     count +=1
     #print(t, float(t))
