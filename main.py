@@ -1,21 +1,22 @@
 # this script computes the first 'n' terms of a recursively defined sequence
-# Root value is a rational number and the inductive step is composed of arithmatic opperations
+# x1 value is a rational number and the inductive step is composed of arithmatic opperations
 
 from fractions import Fraction
-#root = input("enter a rational number, i.e. 5 or 5/7: ")
-#root = Fraction("3/5")
-#root = Fraction(input("enter a rational number, e.g. 5 or 5/7: "))
-root = Fraction("4")
+#x1 = input("enter a rational number, i.e. 5 or 5/7: ")
+#x1 = Fraction("3/5")
+#x1 = Fraction(input("enter a rational number, e.g. 5 or 5/7: "))
+x1 = Fraction("4")
 
 # now how to define the inductive step?
 # Prompt user to enter a list of integers for the numerator and denominator
 #numerator = [1,1,2,0] # 1x^1 + 2x^0
-#numerator = input("Enter the coefficients and exponents of the numorator polynomial as a comma separated list with an even number of terms e.g. 1,1,2,0:").split(',')
-numerator = [1,1,2,0]
+numerator = input("Enter the coefficients and exponents of the numorator polynomial \n as a comma separated list with an even number of terms e.g. 1,1,2,0: ").split(',')
+#numerator = [1,1,2,0]
 print(numerator)
 #denominator = input("Enter the coefficients and exponents of the denominator polynomial as a comma separated list with an even number of terms e.g. 1,1,2,0:").split(',')
 denominator = [5,1]   # 5
-
+#numberOfTerms = int(input("Enter number of terms to be calculated: "))
+numberOfTerms = 100
 # funcion takes in a list and returns a polynomial
 # lists must have even numbers of terms
 def poly_gen(coefs, y):
@@ -37,12 +38,12 @@ def inductive_step(nMinusOneTh):
     return nTh
 
 # then define the first n terms of the sequence by a list of these 2-tuples
-def compute_head(n, root, inductive_step):
-    sequenceHead = [root]
+def compute_head(n, x1, inductive_step):
+    sequenceHead = [x1]
     for i in range(1, n):
         sequenceHead.append(inductive_step(sequenceHead[i - 1]))
     return sequenceHead
-ans = compute_head(30, root, inductive_step)
+ans = compute_head(numberOfTerms, x1, inductive_step)
 #print(ans)
 
 # chage the output format to scientific notation
@@ -50,8 +51,11 @@ ans = compute_head(30, root, inductive_step)
 #use string formating
 #when the num and denom get to long, more than 10 dig. switch to approx scientic notation wit
 # presision 10
+width = len(str(numberOfTerms))
+count = 1
 for t in ans:
-    output = f"{t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
+    output = f"{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
     print(output)
+    count +=1
     #print(t, float(t))
-print(type(root))
+print(type(x1))
