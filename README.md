@@ -1,3 +1,5 @@
+This code is meant to be run from the command line.
+
 This code calculates the first n terms of a recursively defined sequence based on 3 user definded variables:
 1) numberOfTerms is an integer value which spesifies the number of terms to be calculated
 2) x1 a rational number represented by the Fraction type from the fractions modual
