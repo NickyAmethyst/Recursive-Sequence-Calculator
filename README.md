@@ -10,5 +10,6 @@ This code calculates the first n terms of a recursively defined sequence based o
 will yield:
     >>>numerator
     ['1','1','2','0']
+    >>>
 and this will be used to generate the polynomial:
     3x^2^ + 2x^0^
