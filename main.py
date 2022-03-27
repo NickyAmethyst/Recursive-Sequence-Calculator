@@ -35,17 +35,32 @@ def inductive_step(nMinusOneTh):
     return nTh
 
 # returns the first n terms of the sequence by a list of these 2-tuples
+
 def compute_head(n, x1, inductive_step):
     sequenceHead = [x1]
+    count = 1
+    width = len(str(numberOfTerms))
     for i in range(1, n):
         sequenceHead.append(inductive_step(sequenceHead[i - 1]))
+        # (**) print one at a time to see when it slows down
+        t = inductive_step(sequenceHead[i - 1])
+        output = f"x_{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
+        print(output)
+        count +=1
+        # (**)
     return sequenceHead
-ans = compute_head(numberOfTerms, x1, inductive_step)
 
 
-width = len(str(numberOfTerms))
-count = 1
-for t in ans:
-    output = f"x_{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
-    print(output)
-    count +=1
+compute_head(numberOfTerms, x1, inductive_step)
+
+# # (**)
+# ans = compute_head(numberOfTerms, x1, inductive_step)
+
+
+# width = len(str(numberOfTerms))
+# count = 1
+# for t in ans:
+#     output = f"x_{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
+#     print(output)
+#     count +=1
+# # (**)
