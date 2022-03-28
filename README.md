@@ -1,8 +1,7 @@
 This code is meant to be run from the command line.
 
-It hangs for a long time when calculating large numbers of terms for higher degee polynomials.
-^ this is an overflow error "int too large to convert to float"
-  
+I'm trying to fix the overflow error when formatting the output.
+I also want to add a feature that allows a user to request a specific term or to export the data.
 
 This code calculates the first n terms of a recursively defined sequence based on 3 user definded variables:
 1) numberOfTerms is an integer value which spesifies the number of terms to be calculated
