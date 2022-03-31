@@ -35,8 +35,16 @@ def inductive_step(nMinusOneTh):
     nTh = poly_gen(numerator, Fraction(nMinusOneTh)) / poly_gen(denominator, Fraction(nMinusOneTh))
     return nTh
 
-# returns the first n terms of the sequence by a list of these 2-tuples
+# Formats an integer into a scientific notation string of specified precision
+def int_to_sci_str(i,width):
+    s = str(i)
+    magnitude = len(s) - 1
+    first_n_dig = s[:width]
+    string = first_n_dig[0]+"."+first_n_dig[1:]+"e"+str(magnitude)
+    return [string, int(first_n_dig), magnitude]
 
+# returns the first n terms of the sequence by a list of these 2-tuples
+# !! ADD A CUT OFF IN THE FOR LOOP
 def compute_head(n, x1, inductive_step):
     sequenceHead = [x1]
     count = 1
@@ -45,8 +53,16 @@ def compute_head(n, x1, inductive_step):
         sequenceHead.append(inductive_step(sequenceHead[i - 1]))
         # (**) print one at a time to see when it overflows
         t = inductive_step(sequenceHead[i - 1])
-        output = f"x_{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
-        print(output)
+        try:
+            output = f"x_{count:{width}}: {t.numerator:.10e} / {t.denominator:.10e}  |  {float(t)}"
+            print(output)
+            output = f"x_{count:{width}}: {int_to_sci_str(t.numerator,10)[0]} / {int_to_sci_str(t.denominator,10)[0]}  | {int_to_sci_str(t.numerator,10)[1]/int_to_sci_str(t.denominator,10)[1]}e{int_to_sci_str(t.numerator,10)[2] - int_to_sci_str(t.denominator,10)[2]} "
+            print(output)
+        except OverflowError:
+            output = f"x_{count:{width}}: {int_to_sci_str(t.numerator,10)[0]} / {int_to_sci_str(t.denominator,10)[0]}  |  ???"
+            print(output)
+            output = f"x_{count:{width}}: {int_to_sci_str(t.numerator,10)[0]} / {int_to_sci_str(t.denominator,10)[0]}  | {int_to_sci_str(t.numerator,10)[1]/int_to_sci_str(t.denominator,10)[1]}e{int_to_sci_str(t.numerator,10)[2] - int_to_sci_str(t.denominator,10)[2]} "
+            print(output)
         count +=1
         # (**)
     return sequenceHead

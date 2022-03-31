@@ -1,7 +1,5 @@
 This code is meant to be run from the command line.
 
-I'm trying to fix the overflow error when formatting the output.
-I also want to add a feature that allows a user to request a specific term or to export the data.
 
 This code calculates the first n terms of a recursively defined sequence based on 3 user definded variables:
 1) numberOfTerms is an integer value which spesifies the number of terms to be calculated
@@ -35,4 +33,7 @@ x_2: 3.0000000000e+00 / 1.0000000000e+01  |  0.3
 x_3: 2.3000000000e+01 / 1.5000000000e+01  |  1.5333333333333334
 x_4: 5.3000000000e+01 / 1.1500000000e+02  |  0.4608695652173913
 x_5: 2.8300000000e+02 / 2.6500000000e+02  |  1.0679245283018868
+
+
+I also want to add a feature that allows a user to request a specific term or to export the data.
 
